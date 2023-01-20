@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.lucascabral.marvelsuperheroes"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField("String", "API_KEY", "\"426a8a3c32e2543316228982d5e3d552\"")
+            buildConfigField("String", "PRIVATE_KEY", "\"3d286fee9404e7f0c565a623ccd54871b179a2b6\"")
+            buildConfigField("String", "YOUTUBE_KEY", "\"AIzaSyBJZ_BdXITaCdT7Cyz4VY8CkZjn-89FNng\"")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.core:core-ktx:$core_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation "androidx.test.ext:junit:$junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    // Koin & Mock test Dependencies
+    testImplementation "org.koin:koin-test:$koin_version"
+    testImplementation "com.nhaarman:mockito-kotlin:$mockito_version"
+    testImplementation "io.mockk:mockk:$mockk_version"
+
+    // Retrofit Dependencies
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    // Koin Dependencies
+    implementation "org.koin:koin-android:$koin_version"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    // Moshi Dependencies
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+
+    // Lifecycle Dependencies
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_ex_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_vm_version"
+
+    //Navigation Dependencies
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Paging3 Dependency
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // Glide Dependency
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    //Youtube Dependency
+    implementation files("libs/YouTubeAndroidPlayerApi.jar")
+
+    // Lottie Dependency
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    // AdMob Dependency
+    implementation "com.google.android.gms:play-services-ads:$admob_version"
+
+    //DataStore Dependency
+    implementation("androidx.datastore:datastore-preferences:$datastore_preferences")
+}
+apply plugin: "androidx.navigation.safeargs.kotlin"
